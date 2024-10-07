@@ -10,11 +10,20 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from django.urls import re_path
+from django.utils.translation import gettext_lazy as _
 
-from myplugin.content.mypanel import views
+import horizon
+
+class Mygroup(horizon.PanelGroup):
+	slug = "mygroup"
+	name= _("My Group")
+	panels= ('mypanel',)
+
+class Mydashboard(horizon.Dashboard):
+    name = _("EduVM Store")
+    slug = "content"
+    panels = (Mygroup,)  # Add your panels here.
+    default_panel = 'mypanel'  # Specify the slug of the dashboard's default panel.
 
 
-urlpatterns = [
-    re_path(r'^$', views.IndexView.as_view(), name='index'),
-]
+horizon.register(Mydashboard)
