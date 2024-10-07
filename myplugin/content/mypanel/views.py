@@ -15,7 +15,7 @@ from horizon import tabs
 
 class IndexView(tabs.TabbedTableView):
 
-    template_name = 'mydashboard/mypanel/index.html'
+    template_name = 'myplugin/mypanel/index.html'
 
     def get_data(self, request, context, *args, **kwargs):
         # Add data to the context here...
